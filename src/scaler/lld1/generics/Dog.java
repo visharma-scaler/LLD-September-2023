@@ -9,6 +9,10 @@ public class Dog extends Animal{
         return name;
     }
 
+    public void greet() {
+        System.out.println("Good Morning from Dog!");
+    }
+
     @Override
     public String toString() {
         return "Dog{" +
