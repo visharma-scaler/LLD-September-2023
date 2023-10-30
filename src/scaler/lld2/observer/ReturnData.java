@@ -6,4 +6,11 @@ public class ReturnData {
     public ReturnData(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "ReturnData{" +
+                "status='" + status + '\'' +
+                '}';
+    }
 }

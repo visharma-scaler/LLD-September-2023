@@ -45,7 +45,10 @@ public class Amazon {
         // emails.send()
         // invoice.generate();
 
-        orderPlacedSubscribers.forEach(OrderPlacedSubscriber::onOrderPlaced);
+        orderPlacedSubscribers.
+                stream()
+                .map(OrderPlacedSubscriber::onOrderPlaced)
+                .forEach(System.out::println);
     }
 
     public void orderCancelled() {
