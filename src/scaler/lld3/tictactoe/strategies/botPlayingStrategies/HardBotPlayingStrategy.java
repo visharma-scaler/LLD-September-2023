@@ -3,6 +3,9 @@ package scaler.lld3.tictactoe.strategies.botPlayingStrategies;
 import scaler.lld3.tictactoe.models.Board;
 import scaler.lld3.tictactoe.models.Move;
 
-public interface BotPlayingStrategy {
-    Move makeMove(Board board);
+public class HardBotPlayingStrategy implements BotPlayingStrategy{
+    @Override
+    public Move makeMove(Board board) {
+        return null;
+    }
 }
