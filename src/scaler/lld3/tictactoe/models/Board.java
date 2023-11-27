@@ -56,4 +56,32 @@ public class Board {
             System.out.println();
         }
     }
+
+    public void displayV2() {
+        System.out.println();
+
+        for (int i = 0; i < board.size(); i++) {
+            System.out.println();
+            for (int j = 0; j < board.size(); j++) {
+                Cell cell = board.get(i).get(j);
+                System.out.print(" ");
+                if (cell.getCellState().equals(CellState.EMPTY)) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print(cell.getPlayer().getSymbol().getCharacter());
+                }
+
+                if (j < board.size() - 1) {
+                    System.out.print(" |");
+                }
+            }
+            if (i < board.size() - 1) {
+                System.out.println();
+                for(int p = 0; p < board.size(); p++) {
+                    System.out.print("----");
+                }
+            }
+        }
+        System.out.println("\n");
+    }
 }

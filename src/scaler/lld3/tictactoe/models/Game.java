@@ -34,7 +34,7 @@ public class Game {
     }
 
     public void displayBoard() {
-        board.display();
+        board.displayV2();
     }
 
     public void makeMove() {
@@ -94,6 +94,27 @@ public class Game {
             return true;
         }
         return false;
+    }
+
+    public void undo() {
+        if (moves.isEmpty()) {
+            System.out.println("No move to undo!");
+            return;
+        }
+
+        Move lastMove = moves.get(moves.size() - 1);
+        moves.remove(lastMove);
+
+        Cell cell = lastMove.getCell();
+        cell.setCellState(CellState.EMPTY);
+        cell.setPlayer(null);
+
+        nextPlayerMoveIndex -= 1;
+        nextPlayerMoveIndex = (nextPlayerMoveIndex + players.size()) % players.size();
+
+        for(WinningStrategy winningStrategy: winningStrategies) {
+            winningStrategy.handleUndo(board, lastMove);
+        }
     }
 
 

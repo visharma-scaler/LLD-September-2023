@@ -9,12 +9,14 @@ public class Player {
     private String name;
     private Symbol symbol;
     private PlayerType type;
+    private final Scanner scanner;
 
     public Player(Long id, String name, Symbol symbol, PlayerType type) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
         this.type = type;
+        this.scanner = new Scanner(System.in);
     }
 
     public Long getId() {
@@ -50,7 +52,6 @@ public class Player {
     }
 
     public Move makeMove(Board board) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Please tell the row count where you want to make a move (Starting from 0): ");
         int row = scanner.nextInt();
 
