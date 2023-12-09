@@ -20,14 +20,18 @@ public class TicketService {
     private final VehicleRepository vehicleRepository;
     private final ParkingLotRepository parkingLotRepository;
 
+    private final SpotAssignmentFactory spotAssignmentFactory;
+
     public TicketService(GateRepository gateRepository,
                          TicketRepository ticketRepository,
                          VehicleRepository vehicleRepository,
-                         ParkingLotRepository parkingLotRepository) {
+                         ParkingLotRepository parkingLotRepository,
+                         SpotAssignmentFactory spotAssignmentFactory) {
         this.gateRepository = gateRepository;
         this.ticketRepository = ticketRepository;
         this.vehicleRepository = vehicleRepository;
         this.parkingLotRepository = parkingLotRepository;
+        this.spotAssignmentFactory = spotAssignmentFactory;
     }
 
     public Ticket issueTicket(String vehicleNumber,
@@ -57,7 +61,7 @@ public class TicketService {
 
         ParkingLot parkingLot = parkingLotOptional.get();
 
-        SpotAssignmentStrategy spotAssignmentStrategy = SpotAssignmentFactory.getSpotAssignmentStrategyByType(parkingLot.getSpotAssignmentStrategyType());
+        SpotAssignmentStrategy spotAssignmentStrategy = spotAssignmentFactory.getSpotAssignmentStrategyByType(parkingLot.getSpotAssignmentStrategyType());
         ParkingSpot spot = spotAssignmentStrategy.getSpot(generatedAt, vehicleType);
 
         ticket.setAssignedSpot(spot);

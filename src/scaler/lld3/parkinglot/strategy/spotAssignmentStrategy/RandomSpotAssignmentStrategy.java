@@ -8,7 +8,11 @@ import java.util.Optional;
 
 public class RandomSpotAssignmentStrategy implements SpotAssignmentStrategy {
 
-    private ParkingLotRepository parkingLotRepository;
+    private final ParkingLotRepository parkingLotRepository;
+
+    public RandomSpotAssignmentStrategy(ParkingLotRepository parkingLotRepository) {
+        this.parkingLotRepository = parkingLotRepository;
+    }
 
     @Override
     public ParkingSpot getSpot(Gate gate, VehicleType vehicleType) {
